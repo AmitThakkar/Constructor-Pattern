@@ -2,6 +2,7 @@
  * Created by Amit Thakkar on 2/7/14.
  */
 (function () {
+    // Defining the Person Class
     function Person(name, age) {
         this.name = name;
         this.age = age;
@@ -32,7 +33,7 @@
     console.log(this.age);
     console.log(this.show());
 
-
+    // Defining a normal function getMessage
     function getMessage() {
         return "I am normal function";
     }
