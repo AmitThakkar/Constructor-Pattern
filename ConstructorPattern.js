@@ -31,4 +31,15 @@
     console.log(this.name);
     console.log(this.age);
     console.log(this.show());
+
+
+    function getMessage() {
+        return "I am normal function";
+    }
+
+    console.log("\n\n\n\n=========================================");
+    console.log("When we invoke a function without new keyword then it return whatever function returns");
+    console.log(getMessage()); // "I am normal function"
+    console.log("When we invoke a function with new keyword then it return new object");
+    console.log(new getMessage()); // {} empty object
 })();
