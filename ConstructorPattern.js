@@ -28,7 +28,7 @@
     console.log(pi.show());
 
     console.log("\n\n=========================================");
-    console.log("this into Person function refer to parent object when we invoke Person function without new keyword");
+    console.log("this in Person function refers to parent object when we invoke Person function without new keyword");
     console.log(this.name);
     console.log(this.age);
     console.log(this.show());
