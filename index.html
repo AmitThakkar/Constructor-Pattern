@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Constructor-pattern by AmitThakkar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Constructor-pattern</h1>
+      <h2 class="project-tagline"></h2>
+      <a href="https://github.com/AmitThakkar/Constructor-Pattern" class="btn">View on GitHub</a>
+      <a href="https://github.com/AmitThakkar/Constructor-Pattern/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/AmitThakkar/Constructor-Pattern/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="constructor-pattern" class="anchor" href="#constructor-pattern" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Constructor-Pattern</h1>
+
+<p>This repository contains the demo for the <strong>Constructor-Pattern</strong>.</p>
+
+<p>In other programming languages(Java, C++ etc), we can define classes with keyword <strong>class</strong>. But in <strong>JavaScript</strong>, we don't have <strong>class</strong> keyword. But still we can define classes in <strong>JavaScript</strong> language with keyword <strong>function</strong>. Lets understand how we define classes in <strong>JavaScript</strong> with <strong>function</strong> keyword.</p>
+
+<p>We are defining a <strong>class</strong> with the name <strong>Person</strong> which is having two properties i.e. name and age as given below:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">Person</span>(<span class="pl-smi">name</span>, <span class="pl-smi">age</span>) {
+    <span class="pl-v">this</span>.<span class="pl-c1">name</span> <span class="pl-k">=</span> name;
+    <span class="pl-v">this</span>.<span class="pl-smi">age</span> <span class="pl-k">=</span> age;
+    <span class="pl-v">this</span>.<span class="pl-en">show</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () {
+        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>Name: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> <span class="pl-v">this</span>.<span class="pl-c1">name</span> <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span> And Age: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> <span class="pl-v">this</span>.<span class="pl-smi">age</span>;
+    };
+}</pre></div>
+
+<p>You might be thinking that, we are just defining a <strong>function</strong> and not a <strong>class</strong> named <strong>Person</strong>, which takes two arguments (name and age). You are right, we are just defining a <strong>function</strong> here with name <strong>Person</strong>. And when we invoke <strong>Person function</strong> (without <strong>new</strong> keyword), then it behaves like a normal <strong>function</strong>, where <strong>this</strong> is pointing to parent object and it returns either whatever we return from the function or whatever last line of <strong>function</strong> returns. In <strong>Person function</strong> we are not returning anything, and in the last line we have just defined the <strong>show function</strong> which returns nothing. So in the code given below <strong>noObject</strong> === <strong>undefined</strong> will log true.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> noObject <span class="pl-k">=</span> <span class="pl-en">Person</span>(<span class="pl-s"><span class="pl-pds">"</span>Amit Kumar<span class="pl-pds">"</span></span>, <span class="pl-c1">26</span>);
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(noObject <span class="pl-k">===</span> <span class="pl-c1">undefined</span>); <span class="pl-c">// true</span></pre></div>
+
+<p>But when we invoke <strong>Person function</strong> with <strong>new</strong> keyword, then that function magically behaves like a <strong>constructor function</strong> and creates a new object, then assigns the reference of that newly created object to <strong>this</strong> for the <strong>function</strong> and returns the newly created object(<strong>this</strong>) on the last line of the function. As <strong>this</strong> in the <strong>function</strong> points to the newly created object so all those members which we are defined with <strong>this</strong>, will be defined with the newly created object only.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> amit <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Person</span>(<span class="pl-s"><span class="pl-pds">"</span>Amit Thakkar<span class="pl-pds">"</span></span>, <span class="pl-c1">25</span>),
+    pi <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Person</span>(<span class="pl-s"><span class="pl-pds">"</span>Shreyance<span class="pl-pds">"</span></span>, <span class="pl-c1">30</span>);
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(amit <span class="pl-k">!==</span> <span class="pl-c1">undefined</span>); <span class="pl-c">// true</span>
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(pi <span class="pl-k">!==</span> <span class="pl-c1">undefined</span>); <span class="pl-c">// true</span>
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">amit</span>.<span class="pl-en">show</span>());
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">pi</span>.<span class="pl-en">show</span>());</pre></div>
+
+<p><strong>NOTE</strong>: When we define a <strong>function</strong>, which we are going to use as a <strong>Constructor function</strong>, then first letter of the name of <strong>function</strong>, is written in Capital letter. That is a just a convention, so everyone can understand that which functions are <strong>Constructor functions</strong> and which <strong>functions</strong> are <strong>Normal functions</strong>.</p>
+
+<p><strong>Person function</strong> is having two arguments: name and age. When we invoke <strong>Person function</strong> then it assigns name and age arguments to <strong>this.name</strong> and <strong>this.age</strong> respectively. When we are invoking <strong>Person function</strong> with <strong>new</strong> keyword then <strong>this</strong> will be having reference of newly created object but when we are invoking <strong>Person function</strong> without <strong>new</strong> keyword then <strong>this</strong> will be having reference of parent object.</p>
+
+<p>After invoking the <strong>Person function</strong> without <strong>new</strong> keyword, it defines name, age and show members to parent object. So we can access name, age and show members outside the <strong>Person function</strong> too.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-v">this</span>.<span class="pl-c1">name</span>);
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-v">this</span>.<span class="pl-smi">age</span>);
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-v">this</span>.<span class="pl-en">show</span>());</pre></div>
+
+<p>Now let's define a new <strong>function</strong> with name <strong>getMessage</strong>, which returns String as below:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">getMessage</span>() {
+    <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>I am normal function<span class="pl-pds">"</span></span>;
+}</pre></div>
+
+<p>If we invoke <strong>getMessage function</strong> without <strong>new</strong> keyword then it will return whatever it returns, but if we invoke <strong>getMessage function</strong> with <strong>new</strong> keyword, then it will create a new object and it will return that newly created object instead of whatever function returns. And return statement of the <strong>function</strong> will be ignore by <strong>new</strong> keyword.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">getMessage</span>()); <span class="pl-c">// "I am normal function"</span>
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-k">new</span> <span class="pl-en">getMessage</span>()); <span class="pl-c">// {} empty object</span></pre></div>
+
+<p>Now let's make it more interesting and define one more <strong>function</strong> with name <strong>getMessageObject</strong>, which returns Object instead of primitive(String/Number) as below:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">getMessageObject</span>() {
+    <span class="pl-k">return</span> {message<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>I am normal function<span class="pl-pds">"</span></span>};
+}</pre></div>
+
+<p>Now lets invoke <strong>getMessageObject function</strong> with and without <strong>new</strong> keyword and watch the output:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">getMessageObject</span>()); <span class="pl-c">// { message: 'I am normal function' }</span>
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-k">new</span> <span class="pl-en">getMessageObject</span>()); <span class="pl-c">// { message: 'I am normal function' }</span></pre></div>
+
+<p>You will see that, <strong>getMessageObject function</strong> returns same value either when we invoke <strong>getMessageObject function</strong> with <strong>new</strong> keyword or without <strong>new</strong> keyword because <strong>Constructor function</strong> returns an object. If <strong>Constructor function</strong> is already returning an object then <strong>Constructor function</strong> returns that object otherwise <strong>Constructor function</strong> returns newly created object.</p>
+
+<p><strong>NOTE:</strong> You can checkout full working source code from this <a href="https://github.com/AmitThakkar/Constructor-Pattern">link</a>.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/AmitThakkar/Constructor-Pattern">Constructor-pattern</a> is maintained by <a href="https://github.com/AmitThakkar">AmitThakkar</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
