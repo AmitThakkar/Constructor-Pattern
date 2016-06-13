@@ -1,4 +1,4 @@
-Constructor-Pattern
+Constructor Pattern
 ===================
 This repository contains the demo for the **Constructor-Pattern**.
 
